@@ -24,25 +24,24 @@ X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42)
 
 model = DecisionTreeRegressor(
-    max_depth=6, min_samples_leaf=5, random_state=42)
+    max_depth=9, min_samples_leaf=12, random_state=42)
 
 model.fit(X_train, y_train)
 
 pred = model.predict(X_test)
 
-mse_exp03 = mean_squared_error(y_test, pred)
-r2_exp03 = r2_score(y_test, pred)
-
-print("DT-01 MSE:", mse_exp03)
-print("DT-01 R2 :", r2_exp03)
+mse_exp04 = mean_squared_error(y_test, pred)
+r2_exp04 = r2_score(y_test, pred)
+print("DT-02 MSE:", mse_exp04)
+print("DT-02 R2 :", r2_exp04)
 
 
 with open("output/model/trained_model.pkl", "wb") as f:
     pickle.dump(model, f)
 
 metrics = {
-    "MSE": mse_exp03,
-    "R2": r2_exp03
+    "MSE": mse_exp04,
+    "R2": r2_exp04
 }
 
 with open("output/results/metrics.json", "w") as f:
