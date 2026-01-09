@@ -21,27 +21,28 @@ y = df["quality"]
 
 
 X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42)
-''
+    X, y, test_size=0.25, random_state=42)
+
 model = RandomForestRegressor(
-    n_estimators=100, max_depth=10, random_state=42)
+    n_estimators=80, max_depth=15, random_state=42)
 
 model.fit(X_train, y_train)
 
 pred = model.predict(X_test)
 
-mse_exp05 = mean_squared_error(y_test, pred)
-r2_exp05 = r2_score(y_test, pred)
-print("RF-01 MSE:", mse_exp05)
-print("RF-01 R2 :", r2_exp05)
+mse_exp06 = mean_squared_error(y_test, pred)
+r2_exp06 = r2_score(y_test, pred)
+print("RF-01 MSE:", mse_exp06)
+print("RF-01 R2 :", r2_exp06)
+
 
 
 with open("output/model/trained_model.pkl", "wb") as f:
     pickle.dump(model, f)
 
 metrics = {
-    "MSE": mse_exp05,
-    "R2": r2_exp05
+    "MSE": mse_exp06,
+    "R2": r2_exp06
 }
 
 with open("output/results/metrics.json", "w") as f:
